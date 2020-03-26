@@ -48,21 +48,21 @@ public class Controller {
             EventsModel eventsModel = objectMapper.readValue(eventsPayload, EventsModel.class);
 
             eventsModel.getEvents().forEach((event)->{
-//                if (event instanceof MessageEvent) {
-//                    MessageEvent messageEvent = (MessageEvent) event;
-//                    TextMessageContent textMessageContent = (TextMessageContent) messageEvent.getMessage();
-//                    replyText(messageEvent.getReplyToken(), textMessageContent.getText());
-//                }
                 if (event instanceof MessageEvent) {
-                MessageEvent messageEvent = (MessageEvent) event;
-                TextMessageContent textMessageContent = (TextMessageContent) messageEvent.getMessage();
-                replyText(messageEvent.getReplyToken(), textMessageContent.getText());
-                List<Message> msgArray = new ArrayList<>();
-                msgArray.add(new TextMessage(textMessageContent.getText()));
-                msgArray.add(new StickerMessage("1", "106"));
-                ReplyMessage replyMessage = new ReplyMessage(((MessageEvent) event).getReplyToken(), msgArray);
-                reply(replyMessage);
+                    MessageEvent messageEvent = (MessageEvent) event;
+                    TextMessageContent textMessageContent = (TextMessageContent) messageEvent.getMessage();
+                    replyText(messageEvent.getReplyToken(), textMessageContent.getText());
                 }
+//                if (event instanceof MessageEvent) {
+//                MessageEvent messageEvent = (MessageEvent) event;
+//                TextMessageContent textMessageContent = (TextMessageContent) messageEvent.getMessage();
+//                replyText(messageEvent.getReplyToken(), textMessageContent.getText());
+//                List<Message> msgArray = new ArrayList<>();
+//                msgArray.add(new TextMessage(textMessageContent.getText()));
+//                msgArray.add(new StickerMessage("1", "106"));
+//                ReplyMessage replyMessage = new ReplyMessage(((MessageEvent) event).getReplyToken(), msgArray);
+//                reply(replyMessage);
+//                }
             });
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (IOException e) {
